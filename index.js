@@ -17,7 +17,7 @@ app.use(bodyParser.json());
 app.use(api(database));
 
 const start = async () => {
-  const port = process.env.PORT || 3000;
+  const port = process.env.PORT || 80;
   if (process.env.NODE_ENV !== "production") {
     console.log("migating/syncing database");
     await database.syncSchema({
