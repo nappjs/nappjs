@@ -1,0 +1,17 @@
+{
+  "name": "js-core-data-app",
+  "private": true,
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "cors": "^2.8.4",
+    "express": "^4.16.2",
+    "graphql-playground": "^1.0.33",
+    "js-core-data": "^1.7.0",
+    "js-core-data-graphql": "^0.1.0",
+    "js-core-data-rest": "^0.1.0",
+    "sqlite3": "^3.1.13"
+  },
+  "scripts": {
+    "start": "node index.js"
+  }
+}
