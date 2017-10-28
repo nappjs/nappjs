@@ -1,6 +1,8 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
+const getPort = require("get-port");
+const exitHook = require("exit-hook");
 
 const database = require("./lib/database");
 const api = require("./lib/api");
@@ -17,7 +19,8 @@ app.use(bodyParser.json());
 app.use(api(database));
 
 const start = async () => {
-  const port = process.env.PORT || 80;
+  let port = process.env.PORT || 80;
+  port = await getPort({ port: port });
   if (process.env.NODE_ENV !== "production") {
     console.log("migating/syncing database");
     await database.syncSchema({
@@ -27,8 +30,12 @@ const start = async () => {
   }
 
   console.log("starting api");
-  app.listen(port, err => {
+  const server = app.listen(port, err => {
     console.log(`listening on ${port}, err: ${err}`);
+  });
+
+  exitHook(function() {
+    server.close();
   });
 };
 
