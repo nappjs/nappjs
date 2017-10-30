@@ -8,8 +8,7 @@ program.version(require("../package.json").version);
 //  .option('-c, --cheese [type]', 'Add the specified type of cheese [marble]', 'marble')
 
 program.command("start", "start application");
-//   .action(cmd => {
-//     console.log("start");
-//   });
+program.command("migrate", "migrate database");
+program.command("seed", "seed database");
 
 program.parse(process.argv);

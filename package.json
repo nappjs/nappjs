@@ -15,7 +15,7 @@
     "express": "^4.16.2",
     "get-port": "^3.2.0",
     "graphql-playground": "^1.0.33",
-    "js-core-data": "^1.7.0",
+    "js-core-data": "^1.7.1",
     "js-core-data-graphql": "^0.1.0",
     "js-core-data-rest": "^0.1.0",
     "sqlite3": "^3.1.13"
@@ -25,6 +25,6 @@
   },
   "scripts": {
     "patch-release": "npm version patch && npm publish && git push --follow-tags",
-    "start": "node index.js"
+    "start": "./bin/cli.js start"
   }
 }

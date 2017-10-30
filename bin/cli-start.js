@@ -1,6 +1,45 @@
 #! /usr/bin/env node
 const program = require("commander");
+const express = require("express");
+const bodyParser = require("body-parser");
+const cors = require("cors");
+const getPort = require("get-port");
+const exitHook = require("exit-hook");
 
-program.option("-f, --force", "force installation").parse(process.argv);
+const database = require("../lib/database");
+const api = require("../lib/api");
 
-require("../index.js");
+let app = express();
+
+app.use(
+  cors({
+    allowedHeaders: "Content-Range,Content-Type,Range,Authorization",
+    exposedHeaders: "Content-Range"
+  })
+);
+app.use(bodyParser.json());
+app.use(api(database));
+
+const start = async port => {
+  port = await getPort({ port: port });
+  if (process.env.NODE_ENV !== "production") {
+    console.log("migating/syncing database");
+    await database.syncSchema({
+      automigration: true,
+      ignoreMissingVersion: true
+    });
+  }
+
+  console.log("starting api");
+  const server = app.listen(port, err => {
+    console.log(`listening on ${port}, err: ${err}`);
+  });
+
+  exitHook(function() {
+    server.close();
+  });
+};
+
+program.option("-p, --port [port]", "specify port").parse(process.argv);
+
+start(process.env.PORT || program.port || 80);
