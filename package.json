@@ -1,8 +1,15 @@
 {
   "name": "js-core-data-app",
-  "private": true,
+  "description": "ORM inspired by Apple's Objective-C CoreData",
+  "version": "0.0.1",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jakubknejzlik/js-core-data.git"
+  },
   "dependencies": {
     "body-parser": "^1.18.2",
+    "commander": "^2.11.0",
     "cors": "^2.8.4",
     "exit-hook": "^1.1.1",
     "express": "^4.16.2",
@@ -13,7 +20,12 @@
     "js-core-data-rest": "^0.1.0",
     "sqlite3": "^3.1.13"
   },
+  "bin": {
+    "js-core-data-app": "bin/cli.js"
+  },
   "scripts": {
+    "patch-release":
+      "npm version patch && npm publish && git push --follow-tags",
     "start": "node index.js"
   }
 }
