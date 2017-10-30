@@ -1,7 +1,7 @@
 {
   "name": "js-core-data-app",
   "description": "ORM inspired by Apple's Objective-C CoreData",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -27,8 +27,7 @@
     "js-core-data-app-migrate": "bin/cli-migrate.js"
   },
   "scripts": {
-    "patch-release":
-      "npm version patch && npm publish && git push --follow-tags",
+    "patch-release": "npm version patch && npm publish && git push --follow-tags",
     "start": "./bin/cli.js start"
   }
 }
