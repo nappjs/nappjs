@@ -6,9 +6,9 @@ WORKDIR /code
 
 EXPOSE 80
 ENV DATABASE_URL sqlite://:memory:
-VOLUME [ "schema", "middleware", "seeds" ]
+VOLUME [ "schema", "middleware", "seed" ]
 
-RUN npm install -g js-core-data-app
+RUN rm -rf node_modules && npm install
 
 ENTRYPOINT [ "js-core-data-app" ]
 CMD [ "start" ]
