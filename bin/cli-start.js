@@ -8,6 +8,7 @@ const exitHook = require("exit-hook");
 
 const database = require("../lib/database");
 const api = require("../lib/api");
+const seed = require("../lib/seed");
 
 let app = express();
 
@@ -21,6 +22,10 @@ app.use(bodyParser.json());
 app.use(api(database));
 
 const start = async port => {
+  try {
+    await seed.import(database, "startup");
+  } catch (e) {}
+
   port = await getPort({ port: port });
   if (process.env.NODE_ENV !== "production") {
     console.log("migating/syncing database");
