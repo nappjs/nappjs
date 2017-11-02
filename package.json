@@ -1,6 +1,6 @@
 {
   "name": "js-core-data-app",
-  "description": "ORM inspired by Apple's Objective-C CoreData",
+  "description": "NodeJS application built with js-core-data framework",
   "version": "0.0.8",
   "license": "MIT",
   "repository": {
