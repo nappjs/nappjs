@@ -1,7 +1,0 @@
-{
-  "scripts": {
-    "start": "../bin/cli.js start",
-    "seed-test": "../bin/cli.js seed test",
-    "migrate": "../bin/cli.js migrate"
-  }
-}

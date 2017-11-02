@@ -41,6 +41,7 @@ const start = async port => {
   });
 
   exitHook(function() {
+    console.log("detected exit, stopping server");
     server.close();
   });
 };

@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "js-core-data-app": "0.0.8"
+  },
+  "scripts": {
+    "start": "js-core-data-app start",
+    "seed-test": "js-core-data-app seed test",
+    "migrate": "js-core-data-app migrate"
+  }
+}
