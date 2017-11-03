@@ -29,6 +29,7 @@
     "js-core-data-app-migrate": "bin/cli-migrate.js"
   },
   "scripts": {
-    "patch-release": "npm version patch && npm publish && git push --follow-tags"
+    "patch-release":
+      "npm version patch && npm publish && git push --follow-tags"
   }
 }
