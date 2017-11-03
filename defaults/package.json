@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "js-core-data-app": "0.0.8"
+    "js-core-data-app": "0.0.9"
   },
   "scripts": {
     "start": "js-core-data-app start",
