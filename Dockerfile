@@ -7,8 +7,7 @@ VOLUME [ "schema", "middleware", "seed" ]
 COPY defaults /code
 WORKDIR /code
 
-RUN apk --update add gcc g++ make python \
-    && npm install
+RUN apk --update add gcc g++ make python git && npm install
 
 ENTRYPOINT [ "npm" ]
 CMD [ "start" ] 
