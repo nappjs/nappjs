@@ -2,12 +2,10 @@ FROM node:alpine
 
 EXPOSE 80
 ENV DATABASE_URL sqlite://:memory:
-VOLUME [ "schema", "middleware", "seed" ]
 
-COPY defaults /code
 WORKDIR /code
 
-RUN apk --update add gcc g++ make python git && npm install
+RUN mkdir schema middleware seed && apk --update add gcc g++ make python git && npm install -g js-core-data-app
 
-ENTRYPOINT [ "npm" ]
+ENTRYPOINT [ "js-core-data-app" ]
 CMD [ "start" ] 
