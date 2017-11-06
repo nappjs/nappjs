@@ -7,5 +7,5 @@ WORKDIR /code
 
 RUN apk --update add gcc g++ make python git && yarn global add js-core-data-app
 
-ENTRYPOINT [ "js-core-data-app" ]
-CMD [ "start" ] 
+ENTRYPOINT [ ]
+CMD [ "js-core-data-app", "start" ] 
