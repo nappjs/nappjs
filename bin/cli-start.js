@@ -1,8 +1,6 @@
 #! /usr/bin/env node
 const program = require("commander");
 const express = require("express");
-const bodyParser = require("body-parser");
-const cors = require("cors");
 const getPort = require("get-port");
 const exitHook = require("exit-hook");
 
@@ -12,13 +10,6 @@ const seed = require("../lib/seed");
 
 let app = express();
 
-app.use(
-  cors({
-    allowedHeaders: "Content-Range,Content-Type,Range,Authorization",
-    exposedHeaders: "Content-Range"
-  })
-);
-app.use(bodyParser.json());
 app.use(api(database));
 
 const start = async port => {

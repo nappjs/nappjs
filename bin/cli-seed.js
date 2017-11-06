@@ -7,7 +7,7 @@ const seed = require("../lib/seed");
 const _seed = async type => {
   console.log("seeding database...");
   try {
-    await seed.import(database, type);
+    await seed.run(database, type);
     console.log("database seeded");
   } catch (e) {
     console.log("failed to seed database", e);
