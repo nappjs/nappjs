@@ -11,8 +11,13 @@ describe("scripts", () => {
     return app.database.closeAllConnections();
   });
 
-  it("should run test seed", async () => {
+  it("should run test script", async () => {
     const result = await app.scripts.run(app.database, "test");
     assert.equal(result, "this is test: v0.0.2");
+  });
+
+  it("should run plugin test script", async () => {
+    const result = await app.scripts.run(app.database, "test/test");
+    assert.equal(result, "hello from plugin script");
   });
 });
