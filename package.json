@@ -27,10 +27,12 @@
     "js-core-data-app": "bin/cli.js",
     "js-core-data-app-start": "bin/cli-start.js",
     "js-core-data-app-seed": "bin/cli-seed.js",
-    "js-core-data-app-migrate": "bin/cli-migrate.js"
+    "js-core-data-app-migrate": "bin/cli-migrate.js",
+    "js-core-data-app-run": "bin/cli-run.js"
   },
   "scripts": {
-    "patch-release": "npm version patch && npm publish && git push --follow-tags",
+    "patch-release":
+      "npm version patch && npm publish && git push --follow-tags",
     "test": "cd test && mocha ."
   },
   "devDependencies": {
