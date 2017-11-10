@@ -10,7 +10,7 @@ const seed = require("../lib/seeds");
 
 let app = express();
 
-app.use(api(database));
+app.use(api.middleware(database));
 
 const start = async port => {
   try {
