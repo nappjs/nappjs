@@ -2,12 +2,12 @@
 const program = require("commander");
 
 const database = require("../lib/database");
-const seed = require("../lib/seeds");
+const scripts = require("../lib/scripts");
 
-const _seed = async type => {
+const _run = async type => {
   console.log("seeding database...");
   try {
-    await seed.run(database, type);
+    await scripts.run(database, type);
     console.log("database seeded");
   } catch (e) {
     console.log("failed to seed database", e);
@@ -18,6 +18,6 @@ const _seed = async type => {
 };
 
 program
-  .arguments("<seed>")
-  .action(_seed)
+  .arguments("<script>")
+  .action(_run)
   .parse(process.argv);

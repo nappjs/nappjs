@@ -6,7 +6,7 @@ const exitHook = require("exit-hook");
 
 const database = require("../lib/database");
 const api = require("../lib/api");
-const seed = require("../lib/seed");
+const seed = require("../lib/seeds");
 
 let app = express();
 

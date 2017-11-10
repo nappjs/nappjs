@@ -3,7 +3,7 @@ const moment = require("moment");
 
 const app = require("../index");
 
-describe("seed", () => {
+describe("seeds", () => {
   beforeEach(() => {
     return app.database.syncSchema({ force: true });
   });
@@ -12,7 +12,7 @@ describe("seed", () => {
   });
 
   it("should run test seed", async () => {
-    await app.seed.run(app.database, "test");
+    await app.seeds.run(app.database, "test");
 
     const context = app.database.createContext();
 
