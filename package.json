@@ -1,7 +1,7 @@
 {
   "name": "js-core-data-app",
   "description": "NodeJS application built with js-core-data framework",
-  "version": "0.0.13",
+  "version": "0.0.14",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -31,8 +31,7 @@
     "js-core-data-app-run": "bin/cli-run.js"
   },
   "scripts": {
-    "patch-release":
-      "npm version patch && npm publish && git push --follow-tags",
+    "patch-release": "npm version patch && npm publish && git push --follow-tags",
     "test": "cd test && mocha ."
   },
   "devDependencies": {
