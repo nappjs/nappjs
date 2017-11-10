@@ -1,5 +1,5 @@
 const assert = require("assert");
-const database = require("../index").database;
+const database = require("../index")().database;
 
 describe("database", () => {
   beforeEach(() => {

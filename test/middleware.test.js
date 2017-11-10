@@ -2,7 +2,7 @@ const assert = require("assert");
 const supertest = require("supertest");
 const express = require("express");
 
-const app = require("../index");
+const app = require("../index")();
 const api = express();
 api.use("/", app.api.middleware(app.database));
 

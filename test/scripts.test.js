@@ -1,7 +1,7 @@
 const assert = require("assert");
 const moment = require("moment");
 
-const app = require("../index");
+const app = require("../index")();
 
 describe("scripts", () => {
   beforeEach(() => {
