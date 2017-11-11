@@ -24,4 +24,13 @@ describe("middleware", () => {
         assert.equal(res.text, "hello world");
       });
   });
+
+  it("should fetch with data", () => {
+    return test
+      .get("/context-test")
+      .expect(200)
+      .expect(res => {
+        assert.equal(res.body.length, 1);
+      });
+  });
 });
