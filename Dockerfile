@@ -2,6 +2,7 @@ FROM node:8.9.0-alpine
 
 EXPOSE 80
 ENV DATABASE_URL sqlite://:memory:
+ENV REST_API_PATH /
 
 WORKDIR /code
 
