@@ -12,6 +12,10 @@ let app = express();
 
 app.use(api.middleware(database));
 
+app.use((req, res, next) => {
+  res.status(404).end(`Cannot GET /${req.path}`);
+});
+
 const start = async port => {
   try {
     await seed.import(database, "startup");
