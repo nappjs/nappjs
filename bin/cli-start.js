@@ -19,7 +19,7 @@ const start = async port => {
 
   port = await getPort({ port: port });
   if (process.env.NODE_ENV !== "production") {
-    console.log("migating/syncing database");
+    console.log("migrating/syncing database (NODE_ENV: !production)");
     await database.syncSchema({
       automigration: true,
       ignoreMissingVersion: true
