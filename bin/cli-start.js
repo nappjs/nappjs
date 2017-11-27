@@ -5,19 +5,12 @@ const getPort = require("get-port");
 const exitHook = require("exit-hook");
 
 const database = require("../lib/database");
-const api = require("../lib/api");
-const seed = require("../lib/seeds");
-
-let app = express();
-
-app.use(api.middleware(database));
 
 const start = async port => {
   try {
     await seed.import(database, "startup");
   } catch (e) {}
 
-  port = await getPort({ port: port });
   if (process.env.NODE_ENV !== "production") {
     console.log("migrating/syncing database (NODE_ENV: !production)");
     await database.syncSchema({
@@ -25,6 +18,15 @@ const start = async port => {
       ignoreMissingVersion: true
     });
   }
+
+  port = await getPort({ port: port });
+
+  const api = require("../lib/api");
+  const seed = require("../lib/seeds");
+
+  let app = express();
+
+  app.use(api.middleware(database));
 
   console.log("starting api");
   const server = app.listen(port, err => {

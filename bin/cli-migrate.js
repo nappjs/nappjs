@@ -4,7 +4,7 @@ const program = require("commander");
 const database = require("../lib/database");
 
 const migrate = async () => {
-  console.log("migating/syncing database...");
+  console.log("migrating/syncing database...");
   try {
     await database.syncSchema({
       automigration: true,
