@@ -8,7 +8,7 @@ api.use("/", app.api.middleware(app.database));
 
 const test = supertest(api);
 
-describe("api", () => {
+describe.skip("api", () => {
   // it.only("should start running", done => {
   //   api.listen(8000, () => {
   //     console.log("listening 8000");
