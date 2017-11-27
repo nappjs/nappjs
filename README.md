@@ -2,6 +2,8 @@
 
 NodeJS application built with js-core-data framework
 
+[![Build Status](https://travis-ci.org/js-core-data/app.svg?branch=master)](https://travis-ci.org/js-core-data/app)
+
 # structure
 
 * schema - folder containing schema versions
