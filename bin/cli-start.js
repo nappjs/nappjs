@@ -26,7 +26,7 @@ const start = async port => {
 
   let app = express();
 
-  app.use(api.middleware(database));
+  api.middleware(app);
 
   console.log("starting api");
   const server = app.listen(port, err => {

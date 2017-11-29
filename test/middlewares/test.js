@@ -1,13 +1,9 @@
-const Router = require("express").Router;
-
-module.exports = () => {
-  const test = new Router();
-
-  test.get("/test", (req, res, next) => {
+module.exports = app => {
+  app.get("/test", (req, res, next) => {
     res.send("hello world");
   });
 
-  test.get("/context-test", (req, res, next) => {
+  app.get("/context-test", (req, res, next) => {
     req.context
       .getObjects("Company")
       .then(data => {
@@ -16,7 +12,7 @@ module.exports = () => {
       .catch(next);
   });
 
-  test.get("/me", async (req, res, next) => {
+  app.get("/me", async (req, res, next) => {
     try {
       const payload = await req.jwt.payload();
       res.send(payload);
@@ -24,6 +20,4 @@ module.exports = () => {
       next(e);
     }
   });
-
-  return test;
 };

@@ -4,7 +4,7 @@ const express = require("express");
 
 const app = require("../index")();
 const api = express();
-api.use("/", app.api.middleware(app.database));
+app.api.middleware(api);
 
 const test = supertest(api);
 
