@@ -1,23 +1,16 @@
 module.exports = app => {
   app.get("/test", (req, res, next) => {
-    res.send("hello world");
+    res.send(req.app.locals.database ? "hello world" : "bad day");
   });
 
   app.get("/context-test", (req, res, next) => {
-    req.context
-      .getObjects("Company")
-      .then(data => {
-        res.send(data);
-      })
-      .catch(next);
+    return req.context.getObjects("Company").then(data => {
+      res.send(data);
+    });
   });
 
-  app.get("/me", async (req, res, next) => {
-    try {
-      const payload = await req.jwt.payload();
-      res.send(payload);
-    } catch (e) {
-      next(e);
-    }
+  app.get("/me", async (req, res) => {
+    const payload = await req.jwt.payload();
+    res.send(payload);
   });
 };
