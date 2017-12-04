@@ -1,4 +1,8 @@
+const assert = require("assert");
+
 module.exports = app => {
+  assert.ok(app.locals);
+
   app.get("/test", (req, res, next) => {
     res.send(req.app.locals.database ? "hello world" : "bad day");
   });
