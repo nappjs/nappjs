@@ -24,6 +24,7 @@
     "js-core-data-rest": "^0.1.1",
     "jsonwebtoken": "^8.1.0",
     "mysql": "^2.15.0",
+    "newrelic": "^2.4.1",
     "pg": "^7.3.0",
     "sqlite3": "^3.1.13"
   },
