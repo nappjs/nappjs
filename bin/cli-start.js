@@ -1,4 +1,5 @@
 #! /usr/bin/env node
+require("../lib/newrelic");
 const program = require("commander");
 const express = require("express");
 const getPort = require("get-port");
