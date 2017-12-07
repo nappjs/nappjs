@@ -5,11 +5,11 @@ const database = require("../lib/database");
 const scripts = require("../lib/scripts");
 
 const _run = async type => {
-  console.log("running script database...");
+  console.log(`running script ${type}...`);
   try {
     await scripts.run(database, type);
   } catch (e) {
-    console.log("failed to run database", e);
+    console.log(`failed to run ${type}`, e);
   } finally {
     console.log("draining database connections...");
     database.closeAllConnections();
