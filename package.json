@@ -1,11 +1,11 @@
 {
-  "name": "js-core-data-app",
-  "description": "NodeJS application built with js-core-data framework",
+  "name": "nappjs",
+  "description": "NodeJS application stack",
   "version": "0.2.9",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/jakubknejzlik/js-core-data.git"
+    "url": "https://github.com/nappjs/nappjs.git"
   },
   "dependencies": {
     "body-parser": "^1.18.2",
@@ -18,18 +18,15 @@
     "global-modules": "^1.0.0",
     "inflection": "^1.12.0",
     "js-core-data": "^1.8.3",
-    "jsonwebtoken": "^8.1.0",
     "mysql": "^2.15.0",
     "newrelic": "^2.4.1",
     "pg": "^7.3.0",
     "sqlite3": "^3.1.13"
   },
   "bin": {
-    "js-core-data-app": "bin/cli.js",
-    "js-core-data-app-start": "bin/cli-start.js",
-    "js-core-data-app-seed": "bin/cli-seed.js",
-    "js-core-data-app-migrate": "bin/cli-migrate.js",
-    "js-core-data-app-run": "bin/cli-run.js"
+    "nappjs": "bin/cli.js",
+    "nappjs-start": "bin/cli-start.js",
+    "nappjs-run": "bin/cli-run.js"
   },
   "scripts": {
     "patch-release": "npm version patch && npm publish && git push --follow-tags",

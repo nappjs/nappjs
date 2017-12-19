@@ -6,7 +6,7 @@ ENV REST_API_PATH /
 
 WORKDIR /code
 
-RUN apk --update add gcc g++ make python git && yarn global add js-core-data-app
+RUN apk --update add gcc g++ make python git && yarn global add nappjs
 
 ENTRYPOINT [ ]
-CMD [ "js-core-data-app", "start" ] 
+CMD [ "nappjs", "start" ] 

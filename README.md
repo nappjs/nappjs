@@ -1,8 +1,8 @@
-# js-core-data-app
+# nappjs
 
-NodeJS application built with js-core-data framework
+NodeJS application stack
 
-[![Build Status](https://travis-ci.org/js-core-data/app.svg?branch=master)](https://travis-ci.org/js-core-data/app)
+[![Build Status](https://travis-ci.org/nappjs/nappjs.svg?branch=master)](https://travis-ci.org/nappjs/nappjs)
 
 # structure
 
@@ -14,6 +14,6 @@ NodeJS application built with js-core-data framework
 # Plugins
 
 Plugins can also be load from local and global node_modules. Each module must
-have prefix `jscda-` to be loaded. Loading global modules is disabled by
+have prefix `nappjs-` to be loaded. Loading global modules is disabled by
 default, but you can enable it by setting environment variable:
 `LOAD_GLOBAL_PLUGINS=true`
