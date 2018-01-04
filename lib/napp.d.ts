@@ -6,6 +6,8 @@ export declare class NappJS {
     private plugins;
     private middlewares;
     private scripts;
+    addMiddleware(name: string, path: string): Promise<void>;
+    addPlugin(name: string, path: string): Promise<void>;
     load(): Promise<void>;
     start(): Promise<void>;
     runScript(name: string, ...args: any[]): Promise<any>;

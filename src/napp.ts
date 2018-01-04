@@ -11,6 +11,14 @@ export class NappJS {
     private middlewares = loadMiddlewares()
     private scripts = loadScripts()
 
+    public async addMiddleware(name: string, path: string) {
+        this.middlewares.push(new NappJSModule(name, path))
+    }
+
+    public async addPlugin(name: string, path: string) {
+        this.plugins.push(new NappJSModule(name, path))
+    }
+
     public async load(): Promise<void> {
         let all = this.plugins.concat(this.middlewares).concat(this.scripts)
         for (let v of all) {
