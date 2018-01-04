@@ -9,8 +9,10 @@ const start = async port => {
 
   const napp = require("../index")();
 
-  console.log("starting...");
   try {
+    console.log("loading...");
+    await napp.load();
+    console.log("starting...");
     await napp.start();
     console.log("...started");
   } catch (err) {
