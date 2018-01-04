@@ -25,14 +25,26 @@ export class NappJS {
             await v.load(this)
         }
         for (let v of all) {
+            await v.preRegister(this)
+        }
+        for (let v of all) {
             await v.register(this)
+        }
+        for (let v of all) {
+            await v.postRegister(this)
         }
     }
 
     public async start(): Promise<void> {
         let all = this.plugins.concat(this.middlewares)
         for (let v of all) {
+            await v.preStart(this)
+        }
+        for (let v of all) {
             await v.start(this)
+        }
+        for (let v of all) {
+            await v.postStart(this)
         }
     }
 

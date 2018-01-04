@@ -16,10 +16,31 @@ export class NappJSModule {
     }
   }
 
-  async register(app: NappJS) {
+  async preRegister(app: NappJS, ...args: any[]) {
+    assert.ok(this.module, 'module not loaded')
+    if (typeof this.module.preRegister === 'function') {
+      await this.module.preRegister(app, ...args)
+    }
+  }
+
+  async register(app: NappJS, ...args: any[]) {
     assert.ok(this.module, 'module not loaded')
     if (typeof this.module.register === 'function') {
-      await this.module.register(app)
+      await this.module.register(app, ...args)
+    }
+  }
+
+  async postRegister(app: NappJS, ...args: any[]) {
+    assert.ok(this.module, 'module not loaded')
+    if (typeof this.module.postRegister === 'function') {
+      await this.module.postRegister(app, ...args)
+    }
+  }
+
+  async preStart(app: NappJS, ...args: any[]): Promise<any> {
+    assert.ok(this.module, 'module not loaded')
+    if (typeof this.module.preStart === 'function') {
+      return Promise.resolve(this.module.preStart(app, ...args))
     }
   }
 
@@ -32,10 +53,31 @@ export class NappJSModule {
     }
   }
 
-  async stop(app: NappJS): Promise<any> {
+  async postStart(app: NappJS, ...args: any[]): Promise<any> {
+    assert.ok(this.module, 'module not loaded')
+    if (typeof this.module.postStart === 'function') {
+      return Promise.resolve(this.module.postStart(app, ...args))
+    }
+  }
+
+  async preStop(app: NappJS, ...args: any[]): Promise<any> {
+    assert.ok(this.module, 'module not loaded')
+    if (typeof this.module.preStop === 'function') {
+      return Promise.resolve(this.module.preStop(app, ...args))
+    }
+  }
+
+  async stop(app: NappJS, ...args: any[]): Promise<any> {
     assert.ok(this.module, 'module not loaded')
     if (typeof this.module.stop === 'function') {
-      return Promise.resolve(this.module.start(app))
+      return Promise.resolve(this.module.stop(app, ...args))
+    }
+  }
+
+  async postStop(app: NappJS, ...args: any[]): Promise<any> {
+    assert.ok(this.module, 'module not loaded')
+    if (typeof this.module.postStop === 'function') {
+      return Promise.resolve(this.module.postStop(app, ...args))
     }
   }
 }
