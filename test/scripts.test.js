@@ -1,23 +1,20 @@
 const assert = require("assert");
-const moment = require("moment");
-
-const app = require("../index")();
 
 describe("scripts", () => {
-  beforeEach(() => {
-    return app.database.syncSchema({ force: true });
-  });
-  after(() => {
-    return app.database.closeAllConnections();
+  const napp = require("../index")();
+
+  before(async () => {
+    await napp.load();
+    await napp.start();
   });
 
   it("should run test script", async () => {
-    const result = await app.scripts.run(app.database, "test");
-    assert.equal(result, "this is test: v0.0.2");
+    const result = await napp.runScript("test");
+    assert.equal(result, "hello from script");
   });
 
   it("should run plugin test script", async () => {
-    const result = await app.scripts.run(app.database, "test/test");
+    const result = await napp.runScript("test/test");
     assert.equal(result, "hello from plugin script");
   });
 });

@@ -1,27 +1,15 @@
 const assert = require("assert");
-const supertest = require("supertest");
-const express = require("express");
 
-const app = require("../index")();
-const api = express();
-app.api.middleware(api);
-
-const test = supertest(api);
+const napp = require("../index")();
 
 describe("plugin", () => {
-  beforeEach(() => {
-    return require("./seed-data")(app.database);
-  });
-  after(() => {
-    return app.database.closeAllConnections();
+  before(async () => {
+    await napp.load();
+    await napp.start();
   });
 
-  it("should fetch endpoint", () => {
-    return test
-      .get("/plugin-test")
-      .expect(200)
-      .expect(res => {
-        assert.equal(res.text, "hello world from plugin");
-      });
+  it("should load", () => {
+    assert.equal(napp.locals.plugin_registered, "blah");
+    assert.equal(napp.locals.plugin_started, "foo");
   });
 });

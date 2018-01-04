@@ -1,5 +1,8 @@
-module.exports = app => {
-  app.get("/plugin-test", (req, res, next) => {
-    res.send("hello world from plugin");
-  });
+module.exports = {
+  register: app => {
+    app.locals.plugin_registered = "blah";
+  },
+  start: app => {
+    app.locals.plugin_started = "foo";
+  }
 };

@@ -1,3 +1,3 @@
-module.exports = db => {
-  return "this is test: " + db.model.version;
+module.exports = napp => {
+  return "hello from script";
 };
