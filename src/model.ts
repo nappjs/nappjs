@@ -31,4 +31,11 @@ export class NappJSModule {
       return Promise.resolve(this.module(app))
     }
   }
+
+  async stop(app: NappJS): Promise<any> {
+    assert.ok(this.module, 'module not loaded')
+    if (typeof this.module.stop === 'function') {
+      return Promise.resolve(this.module.start(app))
+    }
+  }
 }

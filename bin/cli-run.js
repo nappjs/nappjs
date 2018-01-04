@@ -1,22 +1,18 @@
 #! /usr/bin/env node
 const program = require("commander");
 
-const database = require("../lib/database");
-const scripts = require("../lib/scripts");
+const _run = async (script, args) => {
+  const napp = require("../index")();
 
-const _run = async type => {
-  console.log(`running script ${type}...`);
+  console.log(`running script ${script}...`);
   try {
-    await scripts.run(database, type);
+    await napp.runScript(script, ...args);
   } catch (e) {
-    console.log(`failed to run ${type}`, e);
-  } finally {
-    console.log("draining database connections...");
-    database.closeAllConnections();
+    console.log(`failed to run ${script}`, e);
   }
 };
 
 program
-  .arguments("<script>")
+  .arguments("<script> [args...]")
   .action(_run)
   .parse(process.argv);

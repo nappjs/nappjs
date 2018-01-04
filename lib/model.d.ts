@@ -7,4 +7,5 @@ export declare class NappJSModule {
     load(app: NappJS): Promise<any>;
     register(app: NappJS): Promise<void>;
     start(app: NappJS): Promise<any>;
+    stop(app: NappJS): Promise<any>;
 }

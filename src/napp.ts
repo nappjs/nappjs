@@ -36,6 +36,13 @@ export class NappJS {
         }
     }
 
+    public async stop(): Promise<void> {
+        let all = this.plugins.concat(this.middlewares)
+        for (let v of all) {
+            await v.stop(this)
+        }
+    }
+
     public async runScript(name: string, ...args: any[]): Promise<any> {
         let script = this.findScript(name)
 
