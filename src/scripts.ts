@@ -19,9 +19,11 @@ export const loadScripts = () => {
   }).concat([{plugin: null,path:scriptsPath}])
 
   for(let p of paths) {
-    for(let filename of fs.readdirSync(p.path)) {
-      let name = (p.plugin ? `${p.plugin}/` : '') + path.basename(filename).replace('.js','')
-      scripts.push(new NappJSModule(name,path.join(p.path,filename)))
+    if (fs.existsSync(p.path)) {
+      for(let filename of fs.readdirSync(p.path)) {
+        let name = (p.plugin ? `${p.plugin}/` : '') + path.basename(filename).replace('.js','')
+        scripts.push(new NappJSModule(name,path.join(p.path,filename)))
+      }
     }
   }
 
