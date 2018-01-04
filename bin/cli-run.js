@@ -4,6 +4,8 @@ const program = require("commander");
 const _run = async (script, args) => {
   const napp = require("../index")();
 
+  await napp.load();
+
   console.log(`running script ${script}...`);
   try {
     await napp.runScript(script, ...args);

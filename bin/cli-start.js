@@ -9,10 +9,6 @@ const start = async port => {
 
   const napp = require("../index")();
 
-  let app = express();
-
-  api.middleware(app);
-
   console.log("starting...");
   try {
     await napp.start();
@@ -21,9 +17,10 @@ const start = async port => {
     console.log(`failed to start ${err}`);
   }
 
-  exitHook(function() {
-    console.log("detected exit, stopping server");
-    napp.stop();
+  exitHook(async function() {
+    console.log("detected exit, stopping server...");
+    await napp.stop();
+    console.log("...stopped");
   });
 };
 
