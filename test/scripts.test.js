@@ -9,8 +9,8 @@ describe("scripts", () => {
   });
 
   it("should run test script", async () => {
-    const result = await napp.runScript("test");
-    assert.equal(result, "hello from script");
+    const result = await napp.runScript("test", "aaa");
+    assert.equal(result, "hello from script aaa");
   });
 
   it("should run plugin test script", async () => {

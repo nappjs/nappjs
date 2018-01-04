@@ -23,12 +23,12 @@ export class NappJSModule {
     }
   }
 
-  async start(app: NappJS): Promise<any> {
+  async start(app: NappJS, ...args: any[]): Promise<any> {
     assert.ok(this.module, 'module not loaded')
     if (typeof this.module.start === 'function') {
-      return Promise.resolve(this.module.start(app))
+      return Promise.resolve(this.module.start(app, ...args))
     } else if (typeof this.module === 'function'){
-      return Promise.resolve(this.module(app))
+      return Promise.resolve(this.module(app, ...args))
     }
   }
 

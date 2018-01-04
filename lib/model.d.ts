@@ -6,6 +6,6 @@ export declare class NappJSModule {
     constructor(name: string, path: string);
     load(app: NappJS): Promise<any>;
     register(app: NappJS): Promise<void>;
-    start(app: NappJS): Promise<any>;
+    start(app: NappJS, ...args: any[]): Promise<any>;
     stop(app: NappJS): Promise<any>;
 }
