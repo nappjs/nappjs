@@ -1,7 +1,7 @@
 const assert = require("assert");
 
 describe("scripts", () => {
-  const napp = require("../index")();
+  const napp = require("../index").NewNappJS();
 
   before(async () => {
     await napp.load();

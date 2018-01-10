@@ -1,6 +1,6 @@
 const assert = require("assert");
 
-const napp = require("../index")();
+const napp = require("../index").NewNappJS();
 
 describe("napp", () => {
   it("should fetch plugins", () => {

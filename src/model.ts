@@ -2,8 +2,9 @@ import { NappJS } from './napp';
 
 export const createNappJSModule = (name: string, path: string): NappJSModule => {
   const module = require(path)
-  if (module.prototype instanceof NappJSModule) {
-    let instance = new module(name, path, null)
+  const defaultModule = module.default || module 
+  if (defaultModule.prototype instanceof NappJSModule) {
+    let instance = new defaultModule(name, path, null)
     return instance
   }
   return new NappJSModule(name, path, module)
