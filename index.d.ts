@@ -1,5 +1,6 @@
-import { NappJS as _NappJS } from './lib/napp';
+import { NappJS } from './lib/napp';
 
+export { NappJS } from './lib/napp';
 export { NappJSModule } from "./lib/model";
 
-export const NappJS: () => _NappJS;
+export const NewNappJS: () => NappJS;
