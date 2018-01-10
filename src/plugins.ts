@@ -1,7 +1,8 @@
-import * as fs from "fs"
-import * as path from "path"
-import * as findNodeModules from "find-node-modules";
-import { NappJSModule } from './model'
+import * as findNodeModules from 'find-node-modules';
+import * as fs from 'fs';
+import * as path from 'path';
+
+import { createNappJSModule, NappJSModule } from './model';
 
 
 export const getPluginsPaths = () => {
@@ -42,7 +43,7 @@ export const loadPlugins = () => {
   let plugins: NappJSModule[] = []
   paths.forEach(file => {
     const pluginName = path.basename(file);
-    plugins.push(new NappJSModule(pluginName,file))
+    plugins.push(createNappJSModule(pluginName,file))
   });
 
   if (plugins.length === 0) {

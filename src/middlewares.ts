@@ -1,6 +1,7 @@
-import * as fs from "fs"
-import * as path from "path"
-import { NappJSModule } from './model'
+import * as fs from 'fs';
+import * as path from 'path';
+
+import { createNappJSModule, NappJSModule } from './model';
 
 
 export const loadMiddlewares = () => {
@@ -20,7 +21,7 @@ export const loadMiddlewares = () => {
   paths.forEach(file => {
     const middlewarePath = path.join(middlewaresPath, file);
     const name = file.replace('.js','')
-    middlewares.push(new NappJSModule(name,middlewarePath))
+    middlewares.push(createNappJSModule(name,middlewarePath))
   });
 
   if (middlewares.length === 0) {

@@ -1,8 +1,8 @@
-import * as fs from 'fs'
-import * as path from 'path'
-import * as inflection from 'inflection'
-import { NappJSModule } from './model'
-import { getPluginsPaths } from './plugins'
+import * as fs from 'fs';
+import * as path from 'path';
+
+import { createNappJSModule, NappJSModule } from './model';
+import { getPluginsPaths } from './plugins';
 
 export const loadScripts = () => {
   console.log("searching for scripts...");
@@ -22,7 +22,7 @@ export const loadScripts = () => {
     if (fs.existsSync(p.path)) {
       for(let filename of fs.readdirSync(p.path)) {
         let name = (p.plugin ? `${p.plugin}/` : '') + path.basename(filename).replace('.js','')
-        scripts.push(new NappJSModule(name,path.join(p.path,filename)))
+        scripts.push(createNappJSModule(name,path.join(p.path,filename)))
       }
     }
   }
