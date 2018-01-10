@@ -1,7 +1,7 @@
-import { loadMiddlewares } from './middlewares'
-import { loadPlugins } from './plugins'
-import { loadScripts } from './scripts'
-import { NappJSModule } from './model'
+import { loadMiddlewares } from './middlewares';
+import { createNappJSModule, NappJSModule } from './model';
+import { loadPlugins } from './plugins';
+import { loadScripts } from './scripts';
 
 export class NappJS {
 
@@ -12,11 +12,11 @@ export class NappJS {
     private scripts = loadScripts()
 
     public async addMiddleware(name: string, path: string) {
-        this.middlewares.push(new NappJSModule(name, path))
+        this.middlewares.push(createNappJSModule(name, path))
     }
 
     public async addPlugin(name: string, path: string) {
-        this.plugins.push(new NappJSModule(name, path))
+        this.plugins.push(createNappJSModule(name, path))
     }
 
     public async load(): Promise<void> {
