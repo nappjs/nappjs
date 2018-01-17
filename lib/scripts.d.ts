@@ -1,2 +1,2 @@
-import { NappJSModule } from './model';
-export declare const loadScripts: () => NappJSModule[];
+import { NappJSScriptContainer } from './model';
+export declare const loadScripts: () => NappJSScriptContainer[];

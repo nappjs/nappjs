@@ -2,7 +2,7 @@ import * as findNodeModules from 'find-node-modules';
 import * as fs from 'fs';
 import * as path from 'path';
 
-import { createNappJSModule, NappJSModule } from './model';
+import { createNappJSService, NappJSServiceContainer } from './model';
 
 
 export const getPluginsPaths = () => {
@@ -40,10 +40,10 @@ export const loadPlugins = () => {
   console.log("searching for plugins...")
   
   let paths = getPluginsPaths()
-  let plugins: NappJSModule[] = []
+  let plugins: NappJSServiceContainer[] = []
   paths.forEach(file => {
     const pluginName = path.basename(file);
-    plugins.push(createNappJSModule(pluginName,file))
+    plugins.push(createNappJSService(pluginName,file))
   });
 
   if (plugins.length === 0) {

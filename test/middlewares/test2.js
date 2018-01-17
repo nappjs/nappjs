@@ -1,13 +1,17 @@
 const assert = require("assert");
-const NappJSModule = require("../../index").NappJSModule;
+const NappJSService = require("../../index").NappJSService;
 
-class MiddlewareTest2 extends NappJSModule {
-  register(app) {
-    app.locals.middleware2_registered = "blah2";
+class MiddlewareTest2 extends NappJSService {
+  constructor(test) {
+    super();
+    this.middleware_started = false;
+    this.test = test;
   }
-  start(app) {
-    app.locals.middleware2_started = "foo2";
+
+  start(napp) {
+    this.middleware_started = this.test.getBlah();
   }
 }
+MiddlewareTest2.dependencies = ["test"];
 
 module.exports = MiddlewareTest2;

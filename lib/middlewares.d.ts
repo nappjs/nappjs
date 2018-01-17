@@ -1,2 +1,2 @@
-import { NappJSModule } from './model';
-export declare const loadMiddlewares: () => NappJSModule[];
+import { NappJSServiceContainer } from './model';
+export declare const loadMiddlewares: () => NappJSServiceContainer[];

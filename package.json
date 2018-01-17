@@ -8,6 +8,7 @@
     "url": "https://github.com/nappjs/nappjs.git"
   },
   "dependencies": {
+    "bottlejs": "^1.6.3",
     "commander": "^2.11.0",
     "cors": "^2.8.4",
     "exit-hook": "^1.1.1",

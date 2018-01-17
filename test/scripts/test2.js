@@ -1,7 +1,7 @@
-const NappJSModule = require("../../index").NappJSModule;
+const NappJSScript = require("../../index").NappJSScript;
 
-class ScriptTest2 extends NappJSModule {
-  async start(app, arg1) {
+class ScriptTest2 extends NappJSScript {
+  async run(app, arg1) {
     return `hello from script ${arg1}`;
   }
 }

@@ -1,8 +1,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
 
-import { createNappJSModule, NappJSModule } from './model';
-
+import { createNappJSService, NappJSServiceContainer } from './model';
 
 export const loadMiddlewares = () => {
   console.log("searching for middlewares...");
@@ -11,7 +10,7 @@ export const loadMiddlewares = () => {
     process.env.MIDDLEWARES_PATH || "./middlewares/"
   );
 
-  let middlewares: NappJSModule[] = []
+  let middlewares: NappJSServiceContainer[] = []
 
   let paths: string[] = [];
   if (fs.existsSync(middlewaresPath)) {
@@ -21,7 +20,7 @@ export const loadMiddlewares = () => {
   paths.forEach(file => {
     const middlewarePath = path.join(middlewaresPath, file);
     const name = file.replace('.js','')
-    middlewares.push(createNappJSModule(name,middlewarePath))
+    middlewares.push(createNappJSService(name,middlewarePath))
   });
 
   if (middlewares.length === 0) {

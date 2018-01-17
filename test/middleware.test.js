@@ -4,14 +4,16 @@ const napp = require("../index").NewNappJS();
 
 describe("middleware", () => {
   before(async () => {
-    await napp.load();
     await napp.start();
   });
 
   it("should load", () => {
-    assert.equal(napp.locals.middleware_registered, "blah");
-    assert.equal(napp.locals.middleware_started, "foo");
-    assert.equal(napp.locals.middleware2_registered, "blah2");
-    assert.equal(napp.locals.middleware2_started, "foo2");
+    let middleware = napp.getService("test");
+    let middleware2 = napp.getService("test2");
+    assert.ok(middleware);
+    assert.ok(middleware2);
+    assert.equal(middleware.middleware_started, "foo");
+    assert.equal(middleware2.middleware_started, "blah");
+    assert.equal(middleware2.test, middleware);
   });
 });

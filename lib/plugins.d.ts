@@ -1,3 +1,3 @@
-import { NappJSModule } from './model';
+import { NappJSServiceContainer } from './model';
 export declare const getPluginsPaths: () => string[];
-export declare const loadPlugins: () => NappJSModule[];
+export declare const loadPlugins: () => NappJSServiceContainer[];

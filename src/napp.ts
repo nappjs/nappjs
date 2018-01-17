@@ -1,82 +1,99 @@
+import * as assert from 'assert';
+import * as Bottle from 'bottlejs';
+
 import { loadMiddlewares } from './middlewares';
-import { createNappJSModule, NappJSModule } from './model';
+import { createNappJSService, NappJSScript, NappJSService } from './model';
 import { loadPlugins } from './plugins';
 import { loadScripts } from './scripts';
 
 export class NappJS {
 
-    public locals: {[id: string]: any} = {}
+    private services: Bottle = new Bottle()
+    private scripts: Bottle = new Bottle()
 
-    private plugins = loadPlugins()
-    private middlewares = loadMiddlewares()
-    private scripts = loadScripts()
+    public addService(name: string, service: any, ...dependencies: string[]) {
+        this.services.service(name, (...args: any[]) => {
+            if (service instanceof NappJSService){
+                return service
+            }
+            return new service(...args)
+        }, ...dependencies)
+    }
+
+    public getService<T extends NappJSService>(name: string): T {
+        let val = this.services.container[name]
+        assert.ok(val, `service ${name} not registered`)
+        assert.ok(val instanceof NappJSService,`injected module ${name} is not instance of NappJSService`)
+        return val
+    }
+
+    public addScript(name: string, script: any) {
+        this.scripts.service(name, (...args: any[]) => {
+            if (script instanceof NappJSScript){
+                return script
+            }
+            return new script(...args)
+        })
+    }
+    public getScript<T extends NappJSScript>(name: string): NappJSScript {
+        let val = this.scripts.container[name]
+        assert.ok(val, `script ${name} not registered`)
+        assert.ok(val instanceof NappJSScript,`injected module ${name} is not instance of NappJSScript`)
+        return val
+    }
+
+    private pluginWrappers = loadPlugins()
+    private middlewareWrappers = loadMiddlewares()
+    private scriptWrappers = loadScripts()
 
     public async addMiddleware(name: string, path: string) {
-        this.middlewares.push(createNappJSModule(name, path))
+        this.middlewareWrappers.push(createNappJSService(name, path))
     }
 
     public async addPlugin(name: string, path: string) {
-        this.plugins.push(createNappJSModule(name, path))
+        this.pluginWrappers.push(createNappJSService(name, path))
     }
 
     public async load(): Promise<void> {
-        let all = this.plugins.concat(this.middlewares).concat(this.scripts)
-        for (let v of all) {
-            await v.load(this)
-        }
-        for (let v of all) {
-            await v.preRegister(this)
-        }
+        let all = this.pluginWrappers.concat(this.middlewareWrappers)
         for (let v of all) {
             await v.register(this)
         }
-        for (let v of all) {
-            await v.postRegister(this)
+        for(let s of this.scriptWrappers) {
+            await s.register(this)
         }
     }
 
     public async start(): Promise<void> {
-        let all = this.plugins.concat(this.middlewares)
+        await this.load()
+        let all = this.pluginWrappers.concat(this.middlewareWrappers)
         for (let v of all) {
-            await v.preStart(this)
-        }
-        for (let v of all) {
-            await v.start(this)
-        }
-        for (let v of all) {
-            await v.postStart(this)
+            let s = this.getService<NappJSService>(v.name)
+            await s.start(this)
         }
     }
 
     public async stop(): Promise<void> {
-        let all = this.plugins.concat(this.middlewares)
+        let all = this.pluginWrappers.concat(this.middlewareWrappers)
         for (let v of all) {
-            await v.stop(this)
+            // await v.stop(this)
         }
     }
 
     public async runScript(name: string, ...args: any[]): Promise<any> {
-        let script = this.findScript(name)
-
+        let script = this.getScript<NappJSScript>(name)
         if (script === null) throw new Error(`script ${name} not found`)
-
-        return script.start(this, ...args)
+        return script.run(this, ...args)
     }
 
-    // searching
-    public findPlugin(name: string): NappJSModule | null {
-        return this.middlewares.reduce((prev, curr)=>{
-            return prev || (curr.name === name ? curr : null)
-        },null)
-    }
-    public findMiddleware(name: string): NappJSModule | null {
-        return this.middlewares.reduce((prev, curr)=>{
-            return prev || (curr.name === name ? curr : null)
-        },null)
-    }
-    public findScript(name: string): NappJSModule | null {
-        return this.scripts.reduce((prev, curr)=>{
-            return prev || (curr.name === name ? curr : null)
-        },null)
-    }
+    // // searching
+    // public findPlugin(name: string): NappJSModule | null {
+    //     return this.getService<NappJSModule>(name)
+    // }
+    // public findMiddleware(name: string): NappJSModule | null {
+    //     return this.getService<NappJSModule>(name)
+    // }
+    // public findScript(name: string): NappJSModule | null {
+    //     return this.getService<NappJSModule>(name)
+    // }
 }

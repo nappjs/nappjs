@@ -4,4 +4,5 @@ module.exports.NewNappJS = config => {
 };
 
 module.exports.NappJS = require("./lib/napp").NappJS;
-module.exports.NappJSModule = require("./lib/model").NappJSModule;
+module.exports.NappJSService = require("./lib/model").NappJSService;
+module.exports.NappJSScript = require("./lib/model").NappJSScript;

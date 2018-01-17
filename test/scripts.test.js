@@ -19,7 +19,7 @@ describe("scripts", () => {
   });
 
   it("should run plugin test script", async () => {
-    const result = await napp.runScript("test/test");
+    const result = await napp.runScript("test-plugin/test");
     assert.equal(result, "hello from plugin script");
   });
 });

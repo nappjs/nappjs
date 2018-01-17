@@ -1,7 +1,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
 
-import { createNappJSModule, NappJSModule } from './model';
+import { createNappJSScript, NappJSScriptContainer } from './model';
 import { getPluginsPaths } from './plugins';
 
 export const loadScripts = () => {
@@ -9,7 +9,7 @@ export const loadScripts = () => {
 
   const scriptsPath = path.resolve(process.env.SCRIPTS_PATH || "./scripts");
 
-  let scripts: NappJSModule[] = []
+  let scripts: NappJSScriptContainer[] = []
   let pluginPaths = getPluginsPaths()
   let paths = pluginPaths.map<{plugin: string | null, path: string}>(p => {
     return {
@@ -23,7 +23,7 @@ export const loadScripts = () => {
       for(let filename of fs.readdirSync(p.path)) {
         if (path.extname(filename) === '.js'){
           let name = (p.plugin ? `${p.plugin}/` : '') + path.basename(filename).replace('.js','')
-          scripts.push(createNappJSModule(name,path.join(p.path,filename)))
+          scripts.push(createNappJSScript(name,path.join(p.path,filename)))
         }
       }
     }
