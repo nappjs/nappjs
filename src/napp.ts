@@ -64,7 +64,7 @@ export class NappJS {
         }
         for (let v of all) {
             let s = this.getService<NappJSService>(v.name)
-            await s.start(this)
+            await s.load(this)
         }
     }
 
