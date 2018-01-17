@@ -1,5 +1,6 @@
 const assert = require("assert");
-const NappJSService = require("../").NappJSService;
+const NappModule = require("../lib");
+const NappJSService = NappModule.NappJSService;
 
 class Service1 extends NappJSService {
   getName() {
@@ -16,9 +17,9 @@ class Service2 extends NappJSService {
   }
 }
 
-describe("di", () => {
-  const napp = require("../index").NewNappJS();
+const napp = NappModule.NewNappJS();
 
+describe("di", () => {
   it("should add/get service", async () => {
     napp.addService("s1", Service1);
 

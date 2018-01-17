@@ -1,4 +1,4 @@
-const NappJSScript = require("../../index").NappJSScript;
+const NappJSScript = require("../../lib").NappJSScript;
 
 class ScriptTest2 extends NappJSScript {
   async run(app, arg1) {

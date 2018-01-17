@@ -1,6 +1,6 @@
 const assert = require("assert");
 
-const napp = require("../index").NewNappJS();
+const napp = require("../lib").NewNappJS();
 
 describe("plugin", () => {
   before(async () => {

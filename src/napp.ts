@@ -57,10 +57,14 @@ export class NappJS {
     public async load(): Promise<void> {
         let all = this.pluginWrappers.concat(this.middlewareWrappers)
         for (let v of all) {
-            await v.register(this)
+            v.register(this)
         }
         for(let s of this.scriptWrappers) {
-            await s.register(this)
+            s.register(this)
+        }
+        for (let v of all) {
+            let s = this.getService<NappJSService>(v.name)
+            await s.start(this)
         }
     }
 
@@ -76,7 +80,8 @@ export class NappJS {
     public async stop(): Promise<void> {
         let all = this.pluginWrappers.concat(this.middlewareWrappers)
         for (let v of all) {
-            // await v.stop(this)
+            let s = this.getService<NappJSService>(v.name)
+            await s.stop(this)
         }
     }
 
@@ -85,15 +90,4 @@ export class NappJS {
         if (script === null) throw new Error(`script ${name} not found`)
         return script.run(this, ...args)
     }
-
-    // // searching
-    // public findPlugin(name: string): NappJSModule | null {
-    //     return this.getService<NappJSModule>(name)
-    // }
-    // public findMiddleware(name: string): NappJSModule | null {
-    //     return this.getService<NappJSModule>(name)
-    // }
-    // public findScript(name: string): NappJSModule | null {
-    //     return this.getService<NappJSModule>(name)
-    // }
 }

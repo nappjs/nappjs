@@ -3,6 +3,7 @@
   "description": "NodeJS application stack",
   "version": "0.5.1",
   "license": "MIT",
+  "main": "lib/index.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/nappjs/nappjs.git"
@@ -24,7 +25,8 @@
     "nappjs-run": "bin/cli-run.js"
   },
   "scripts": {
-    "patch-release": "npm version patch && npm publish && git push --follow-tags",
+    "patch-release":
+      "npm version patch && npm publish && git push --follow-tags",
     "test": "cd test && mocha ."
   },
   "devDependencies": {

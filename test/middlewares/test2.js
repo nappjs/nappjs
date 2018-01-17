@@ -1,5 +1,5 @@
 const assert = require("assert");
-const NappJSService = require("../../index").NappJSService;
+const NappJSService = require("../../lib").NappJSService;
 
 class MiddlewareTest2 extends NappJSService {
   constructor(test) {
