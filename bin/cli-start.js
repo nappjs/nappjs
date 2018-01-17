@@ -7,7 +7,7 @@ const exitHook = require("exit-hook");
 const start = async port => {
   port = await getPort({ port: port });
 
-  const napp = require("../index").NewNappJS();
+  const napp = require("../lib").NewNappJS();
 
   try {
     console.log("loading...");

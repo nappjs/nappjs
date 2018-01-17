@@ -2,7 +2,7 @@
 const program = require("commander");
 
 const _run = async (script, args) => {
-  const napp = require("../index").NewNappJS();
+  const napp = require("../lib").NewNappJS();
 
   await napp.load();
 
