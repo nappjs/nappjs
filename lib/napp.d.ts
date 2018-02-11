@@ -1,4 +1,4 @@
-import { NappJSScript, NappJSService } from './model';
+import { NappJSScript, NappJSService } from "./model";
 export declare class NappJS {
     private services;
     private scripts;
@@ -11,6 +11,7 @@ export declare class NappJS {
     private scriptWrappers;
     addMiddleware(name: string, path: string): Promise<void>;
     addPlugin(name: string, path: string): Promise<void>;
+    private loaded;
     load(): Promise<void>;
     start(): Promise<void>;
     stop(): Promise<void>;
