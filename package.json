@@ -1,7 +1,7 @@
 {
   "name": "nappjs",
   "description": "NodeJS application stack",
-  "version": "0.5.6",
+  "version": "0.5.7",
   "license": "MIT",
   "main": "lib/index.js",
   "repository": {
@@ -27,8 +27,7 @@
     "nappjs-cron": "bin/cli-cron.js"
   },
   "scripts": {
-    "patch-release":
-      "npm version patch && npm publish && git push --follow-tags",
+    "patch-release": "npm version patch && npm publish && git push --follow-tags",
     "test": "cd test && mocha . --timeout=5000"
   },
   "devDependencies": {
