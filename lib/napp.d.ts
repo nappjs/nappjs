@@ -16,4 +16,5 @@ export declare class NappJS {
     start(): Promise<void>;
     stop(): Promise<void>;
     runScript(name: string, ...args: any[]): Promise<any>;
+    startCron(crontime: string, timezone: string | undefined, name: string, ...args: any[]): Promise<any>;
 }

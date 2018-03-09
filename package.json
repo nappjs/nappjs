@@ -12,6 +12,7 @@
     "bottlejs": "^1.6.3",
     "commander": "^2.11.0",
     "cors": "^2.8.4",
+    "cron": "^1.3.0",
     "exit-hook": "^1.1.1",
     "find-node-modules": "^1.0.4",
     "get-port": "^3.2.0",
@@ -25,8 +26,9 @@
     "nappjs-run": "bin/cli-run.js"
   },
   "scripts": {
-    "patch-release": "npm version patch && npm publish && git push --follow-tags",
-    "test": "cd test && mocha ."
+    "patch-release":
+      "npm version patch && npm publish && git push --follow-tags",
+    "test": "cd test && mocha . --timeout=5000"
   },
   "devDependencies": {
     "@types/inflection": "^1.5.28",

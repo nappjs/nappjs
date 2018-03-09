@@ -1,5 +1,6 @@
 import * as assert from "assert";
 import * as Bottle from "bottlejs";
+import { CronJob } from "cron";
 
 import { loadMiddlewares } from "./middlewares";
 import { createNappJSService, NappJSScript, NappJSService } from "./model";
@@ -101,5 +102,26 @@ export class NappJS {
     let script = this.getScript<NappJSScript>(name);
     if (script === null) throw new Error(`script ${name} not found`);
     return script.run(this, ...args);
+  }
+
+  public async startCron(
+    crontime: string,
+    timezone: string | undefined,
+    name: string,
+    ...args: any[]
+  ): Promise<any> {
+    let script = this.getScript<NappJSScript>(name);
+    if (script === null) throw new Error(`script ${name} not found`);
+
+    let cron = new CronJob(
+      crontime,
+      async () => {
+        await script.run(this, ...args);
+      },
+      null,
+      true,
+      timezone
+    );
+    return cron;
   }
 }

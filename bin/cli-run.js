@@ -1,5 +1,6 @@
 #! /usr/bin/env node
 const program = require("commander");
+const exitHook = require("exit-hook");
 
 const _run = async (script, args) => {
   const napp = require("../lib").NewNappJS();
