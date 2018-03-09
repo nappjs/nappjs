@@ -23,10 +23,12 @@
   "bin": {
     "nappjs": "bin/cli.js",
     "nappjs-start": "bin/cli-start.js",
-    "nappjs-run": "bin/cli-run.js"
+    "nappjs-run": "bin/cli-run.js",
+    "nappjs-cron": "bin/cli-cron.js"
   },
   "scripts": {
-    "patch-release": "npm version patch && npm publish && git push --follow-tags",
+    "patch-release":
+      "npm version patch && npm publish && git push --follow-tags",
     "test": "cd test && mocha . --timeout=5000"
   },
   "devDependencies": {
