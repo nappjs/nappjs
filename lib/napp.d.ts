@@ -1,4 +1,5 @@
-import { NappJSScript, NappJSService } from "./model";
+import { NappJSScript, NappJSService } from './model';
+import { HealthCheckData } from './healthcheck';
 export declare class NappJS {
     private services;
     private scripts;
@@ -17,4 +18,5 @@ export declare class NappJS {
     stop(): Promise<void>;
     runScript(name: string, ...args: any[]): Promise<any>;
     startCron(crontime: string, timezone: string | undefined, name: string, ...args: any[]): Promise<any>;
+    getHealthCheckData(): Promise<HealthCheckData>;
 }

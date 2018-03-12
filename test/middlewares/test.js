@@ -1,5 +1,5 @@
-const assert = require("assert");
-const NappJSService = require("../../lib").NappJSService;
+const assert = require('assert');
+const NappJSService = require('../../lib').NappJSService;
 
 class MiddlewareTest extends NappJSService {
   constructor() {
@@ -8,11 +8,15 @@ class MiddlewareTest extends NappJSService {
   }
 
   start(napp) {
-    this.middleware_started = "foo";
+    this.middleware_started = 'foo';
   }
 
   getBlah() {
-    return "blah";
+    return 'blah';
+  }
+
+  async getHealthCheckData() {
+    return { test: 'ok' };
   }
 }
 

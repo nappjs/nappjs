@@ -1,6 +1,6 @@
-const assert = require("assert");
+const assert = require('assert');
 
-const napp = require("../lib").NewNappJS();
+const napp = require('../lib').NewNappJS();
 
 const delay = duration => {
   return new Promise(resolve => {
@@ -8,21 +8,21 @@ const delay = duration => {
   });
 };
 
-describe.only("crons", () => {
+describe('crons', () => {
   before(async () => {
     await napp.load();
     await napp.start();
   });
 
-  it("should start cron script", async () => {
+  it('should start cron script', async () => {
     const cron = await napp.startCron(
-      "* * * * * *",
-      "Europe/Prague",
-      "counter"
+      '* * * * * *',
+      'Europe/Prague',
+      'counter'
     );
     return delay(2500).then(async () => {
       cron.stop();
-      let res = await napp.runScript("counter");
+      let res = await napp.runScript('counter');
       assert.equal(res, 2);
     });
   });

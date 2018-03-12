@@ -1,11 +1,12 @@
-import * as assert from "assert";
-import * as Bottle from "bottlejs";
-import { CronJob } from "cron";
+import * as assert from 'assert';
+import * as Bottle from 'bottlejs';
+import { CronJob } from 'cron';
 
-import { loadMiddlewares } from "./middlewares";
-import { createNappJSService, NappJSScript, NappJSService } from "./model";
-import { loadPlugins } from "./plugins";
-import { loadScripts } from "./scripts";
+import { loadMiddlewares } from './middlewares';
+import { createNappJSService, NappJSScript, NappJSService } from './model';
+import { loadPlugins } from './plugins';
+import { loadScripts } from './scripts';
+import { HealthCheckData } from './healthcheck';
 
 export class NappJS {
   private services: Bottle = new Bottle();
@@ -123,5 +124,19 @@ export class NappJS {
       timezone
     );
     return cron;
+  }
+
+  public async getHealthCheckData(): Promise<HealthCheckData> {
+    let result = {};
+    for (let serviceName of this.services.container.$list()) {
+      let service = this.services.container[serviceName];
+
+      let hc = await service.getHealthCheckData(this);
+      for (let key in hc) {
+        result[key] = hc[key];
+      }
+    }
+
+    return result;
   }
 }
