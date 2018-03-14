@@ -114,10 +114,18 @@ export class NappJS {
     let script = this.getScript<NappJSScript>(name);
     if (script === null) throw new Error(`script ${name} not found`);
 
+    let isRunning = false;
     let cron = new CronJob(
       crontime,
       async () => {
+        if (isRunning) {
+          console.log(`script ${name} still running, skipping`);
+          return;
+        }
+
+        console.log(`starting script ${name}`);
         await script.run(this, ...args);
+        isRunning = false;
       },
       null,
       true,
