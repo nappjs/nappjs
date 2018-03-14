@@ -122,6 +122,7 @@ export class NappJS {
           console.log(`script ${name} still running, skipping`);
           return;
         }
+        isRunning = true;
 
         console.log(`starting script ${name}`);
         await script.run(this, ...args);
