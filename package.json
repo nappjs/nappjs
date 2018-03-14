@@ -1,7 +1,7 @@
 {
   "name": "nappjs",
   "description": "NodeJS application stack",
-  "version": "0.5.9",
+  "version": "0.5.10",
   "license": "MIT",
   "main": "lib/index.js",
   "repository": {
