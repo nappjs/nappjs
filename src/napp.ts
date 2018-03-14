@@ -125,7 +125,11 @@ export class NappJS {
         isRunning = true;
 
         console.log(`starting script ${name}`);
-        await script.run(this, ...args);
+        try {
+          await script.run(this, ...args);
+        } catch (e) {
+          console.log(`script ${name} failed with error:`, e);
+        }
         isRunning = false;
       },
       null,
