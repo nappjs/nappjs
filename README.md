@@ -38,3 +38,7 @@ Then you can continue with implementation according to each plugin specification
 This stack aims mainly to containerized deployment, but for local development you can install cli:
 
 `npm install --save nappjs`
+
+# Example
+
+You can see full feature example at [nappjs accounts](https://github.com/nappjs/accounts) service (OAuth2 compliant backend service).
