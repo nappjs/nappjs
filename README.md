@@ -33,11 +33,23 @@ npm install --save nappjs nappjs-core-data-graphql
 
 Then you can continue with implementation according to each plugin specifications.
 
-# Installations
+# Installation
 
 This stack aims mainly to containerized deployment, but for local development you can install cli:
 
 `npm install --save nappjs`
+
+# Usage
+
+When you have all you plugins installed (see previous section), you can use following scripts in package.json (and call them with `npm run ...`):
+
+```
+{
+    "start": "nappjs start",
+    "run-blah": "nappjs run blah", // runs script named `blah`
+    "start-blah-cron": "nappjs cron '*/5 0 0 0 0 0' blah", // start repeating `blah` script each 5 seconds
+}
+```
 
 # Example
 
