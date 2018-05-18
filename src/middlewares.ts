@@ -4,13 +4,13 @@ import * as path from 'path';
 import { createNappJSService, NappJSServiceContainer } from './model';
 
 export const loadMiddlewares = () => {
-  console.log("searching for middlewares...");
+  console.log('searching for middlewares...');
 
   const middlewaresPath = path.resolve(
-    process.env.MIDDLEWARES_PATH || "./middlewares/"
+    process.env.MIDDLEWARES_PATH || './middlewares/'
   );
 
-  let middlewares: NappJSServiceContainer[] = []
+  let middlewares: NappJSServiceContainer[] = [];
 
   let paths: string[] = [];
   if (fs.existsSync(middlewaresPath)) {
@@ -19,14 +19,17 @@ export const loadMiddlewares = () => {
 
   paths.forEach(file => {
     const middlewarePath = path.join(middlewaresPath, file);
-    const name = file.replace('.js','')
-    middlewares.push(createNappJSService(name,middlewarePath))
+    const extname = path.extname(file);
+    if (extname === '.js' || extname === '.ts') {
+      const name = file.replace(extname, '');
+      middlewares.push(createNappJSService(name, middlewarePath));
+    }
   });
 
   if (middlewares.length === 0) {
-    console.log("no middlewares found");
+    console.log('no middlewares found');
   } else {
-    console.log("middlewares found:", middlewares.map(x => x.name).join(', '));
+    console.log('middlewares found:', middlewares.map(x => x.name).join(', '));
   }
-  return middlewares
-}
+  return middlewares;
+};
