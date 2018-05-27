@@ -20,10 +20,7 @@ export const loadMiddlewares = () => {
   paths.forEach(file => {
     const middlewarePath = path.join(middlewaresPath, file);
     const extname = path.extname(file);
-    if (
-      extname === '.js' ||
-      (extname === '.ts' && file.indexOf('.d.ts') === -1)
-    ) {
+    if (extname === '.js') {
       const name = file.replace(extname, '');
       middlewares.push(createNappJSService(name, middlewarePath));
     }
