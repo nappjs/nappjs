@@ -2,6 +2,9 @@ import * as assert from 'assert';
 import * as Bottle from 'bottlejs';
 import { CronJob } from 'cron';
 
+// ts-node is used for TypeScript require support
+require('ts-node').register({ transpileOnly: true });
+
 import { loadMiddlewares } from './middlewares';
 import { createNappJSService, NappJSScript, NappJSService } from './model';
 import { loadPlugins } from './plugins';

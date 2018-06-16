@@ -24,7 +24,10 @@ export const loadScripts = () => {
     if (fs.existsSync(p.path)) {
       for (let filename of fs.readdirSync(p.path)) {
         const extname = path.extname(filename);
-        if (extname === '.js') {
+        if (
+          extname === '.js' ||
+          (extname === '.ts' && filename.indexOf('.d.ts') === -1)
+        ) {
           let name =
             (p.plugin ? `${p.plugin}/` : '') +
             path.basename(filename).replace(extname, '');
