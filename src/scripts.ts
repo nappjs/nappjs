@@ -26,7 +26,9 @@ export const loadScripts = () => {
         const extname = path.extname(filename);
         if (
           extname === '.js' ||
-          (filename.indexOf('node_modules') === -1 && extname === '.ts' && filename.indexOf('.d.ts') === -1)
+          (p.path.indexOf('node_modules') === -1 &&
+            extname === '.ts' &&
+            filename.indexOf('.d.ts') === -1)
         ) {
           let name =
             (p.plugin ? `${p.plugin}/` : '') +
