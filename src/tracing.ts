@@ -10,7 +10,7 @@ if (existsSync(filename)) {
       `${TRACING_PREFIX ? TRACING_PREFIX + '-' : ''}${name}`,
     projectId: 'novacloud-cz',
     keyFilename: filename,
-    ignoreUrls: [/^\/healthcheck/],
+    ignoreUrls: ['/healthcheck'],
     ignoreMethods: ['options']
   });
 }
