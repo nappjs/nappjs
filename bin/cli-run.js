@@ -1,9 +1,9 @@
 #! /usr/bin/env node
-const program = require("commander");
-const exitHook = require("exit-hook");
+const program = require('commander');
+const exitHook = require('exit-hook');
 
 const _run = async (script, args) => {
-  const napp = require("../lib").NewNappJS();
+  const napp = require('../lib').NewNappJS();
 
   await napp.load();
 
@@ -16,6 +16,6 @@ const _run = async (script, args) => {
 };
 
 program
-  .arguments("<script> [args...]")
+  .arguments('<script> [args...]')
   .action(_run)
   .parse(process.argv);
