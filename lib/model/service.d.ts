@@ -1,6 +1,6 @@
-import { NappJS } from '../../';
-import { NappJSModule, NappJSServiceContainer } from './module';
-import { HealthCheckData } from '../healthcheck';
+import { NappJSModule, NappJSServiceContainer } from "./module";
+import { HealthCheckData } from "../healthcheck";
+import { NappJS } from "../";
 export declare const createNappJSService: (name: string, path: string) => NappJSServiceContainer;
 export declare class NappJSService extends NappJSModule {
     static dependencies: string[];

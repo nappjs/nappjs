@@ -1,4 +1,4 @@
-import { NappJS } from '../../';
+import { NappJS } from "../";
 export interface NappJSModuleContructor {
     new (...any: any[]): NappJSModule;
 }

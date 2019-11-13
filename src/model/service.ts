@@ -1,6 +1,7 @@
-import { NappJS } from '../../';
-import { NappJSModule, NappJSServiceContainer } from './module';
-import { HealthCheckData } from '../healthcheck';
+import { NappJSModule, NappJSServiceContainer } from "./module";
+
+import { HealthCheckData } from "../healthcheck";
+import { NappJS } from "../";
 
 export const createNappJSService = (
   name: string,
@@ -36,21 +37,21 @@ class NappJSObjectService extends NappJSService {
   }
 
   async load(napp: NappJS, ...args: any[]): Promise<void> {
-    if (typeof this.module.load === 'function') {
+    if (typeof this.module.load === "function") {
       return this.module.load(napp, ...args);
     }
   }
 
   async start(napp: NappJS, ...args: any[]): Promise<void> {
-    if (typeof this.module.start === 'function') {
+    if (typeof this.module.start === "function") {
       return this.module.start(napp, ...args);
-    } else if (typeof this.module === 'function') {
+    } else if (typeof this.module === "function") {
       return this.module(napp, ...args);
     }
   }
 
   async stop(napp: NappJS, ...args: any[]): Promise<void> {
-    if (typeof this.module.stop === 'function') {
+    if (typeof this.module.stop === "function") {
       return this.module.stop(napp, ...args);
     }
   }
