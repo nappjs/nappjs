@@ -1,11 +1,10 @@
 #! /usr/bin/env node
-require('../lib/tracing');
-const program = require('commander');
+const program = require("commander");
 
-program.version(require('../package.json').version);
+program.version(require("../package.json").version);
 
-program.command('start', 'start application');
-program.command('run', 'run script');
-program.command('cron', 'start script with cron');
+program.command("start", "start application");
+program.command("run", "run script");
+program.command("cron", "start script with cron");
 
 program.parse(process.argv);
